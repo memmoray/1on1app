@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best Buy Options Selector</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Smart buying assistant</p>
+          <h1>Select the best options to buy</h1>
+          <p class="subhead">
+            Compare options by price, rating, and value. Adjust the weights to match what matters most,
+            then instantly see the best pick.
+          </p>
+        </div>
+        <div class="card highlight">
+          <h2>Top Pick</h2>
+          <p id="best-option" class="best-option">Add options to see a recommendation.</p>
+          <div class="score-row">
+            <span>Score</span>
+            <span id="best-score">--</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Option list</h2>
+          <p class="muted">
+            Add each option with a price, rating (1-5), and value (1-10). You can paste multiple rows at once.
+          </p>
+          <form id="option-form" class="form">
+            <label>
+              Option name
+              <input id="option-name" name="name" type="text" placeholder="UltraComfort Chair" required />
+            </label>
+            <label>
+              Price ($)
+              <input id="option-price" name="price" type="number" min="0" step="0.01" placeholder="199" required />
+            </label>
+            <label>
+              Rating (1-5)
+              <input id="option-rating" name="rating" type="number" min="1" max="5" step="0.1" placeholder="4.6" required />
+            </label>
+            <label>
+              Value (1-10)
+              <input id="option-value" name="value" type="number" min="1" max="10" step="0.1" placeholder="8.5" required />
+            </label>
+            <button type="submit">Add option</button>
+          </form>
+          <div class="divider"></div>
+          <textarea id="bulk-input" rows="5" placeholder="Option name, price, rating, value&#10;Comfort Sofa, 899, 4.8, 9"></textarea>
+          <button id="bulk-add" class="secondary">Add multiple options</button>
+        </div>
+
+        <div class="card">
+          <h2>Preferences</h2>
+          <p class="muted">Tune how the score is calculated. Higher weights make that factor more important.</p>
+          <div class="slider-group">
+            <label>
+              Price sensitivity
+              <input id="weight-price" type="range" min="1" max="10" value="6" />
+              <span id="weight-price-value">6</span>
+            </label>
+            <label>
+              Rating importance
+              <input id="weight-rating" type="range" min="1" max="10" value="8" />
+              <span id="weight-rating-value">8</span>
+            </label>
+            <label>
+              Value importance
+              <input id="weight-value" type="range" min="1" max="10" value="7" />
+              <span id="weight-value-value">7</span>
+            </label>
+          </div>
+          <button id="reset" class="ghost">Reset to sample data</button>
+        </div>
+
+        <div class="card full">
+          <h2>Ranked options</h2>
+          <div class="table">
+            <div class="table-header">
+              <span>Name</span>
+              <span>Price</span>
+              <span>Rating</span>
+              <span>Value</span>
+              <span>Score</span>
+            </div>
+            <div id="option-list" class="table-body"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
